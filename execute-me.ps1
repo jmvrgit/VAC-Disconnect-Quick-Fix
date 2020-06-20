@@ -13,7 +13,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     }
 }
 
-
+#Self elevate is to kill steam processes
 #set this variable to your steam location
 $steamLocation = "C:\Program Files (x86)\Steam"
 
@@ -29,11 +29,14 @@ Stop-Process -force -processname steamwebhelper
 #Change Directory to Steam folder
 Set-Location -Path $steamLocation
 
-#Delete DLLs to be redownloaded (force DL)
+#Delete DLLs to be redownloaded
 Remove-Item Steam.dll -Force
-Remove-Item SteamUI.dll -Force
+#Remove-Item SteamUI.dll -Force does not work, i mean wtf, right?
+cmd.exe /c "del `"$steamLocation\SteamUI.dll`""
 
 # https://developer.valvesoftware.com/wiki/Command_Line_Options#Steam_.28Windows.29
 # -cafeapplaunch == Launch apps in a cyber cafe context (Forces apps to be verified / validated before launch). 
 # -applaunch Launches an Game or Application through Steam. 
 cmd.exe /c "`"$steamLocation\Steam.exe`" -cafeapplaunch -applaunch $appID"
+
+#makes you wonder, why even bother with powershell, right?
