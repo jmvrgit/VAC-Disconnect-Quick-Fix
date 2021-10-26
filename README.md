@@ -3,10 +3,10 @@
  
  Make sure that you understand the script before running it. I'm not malicious, but someone else could be. Thanks
  
-#Requirements
+# Requirements
 Windows
 Steam
 
-#Modifiables
+# Modifiables
 By default it uses CSGO as the game
 Simply run as admin
